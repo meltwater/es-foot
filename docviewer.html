@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>esfoot</title>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <!-- Ink CSS -->
+        <link rel="stylesheet" type="text/css" href="css/ink-flex.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+
+        <!-- App specific CSS -->
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/foot.css">
+
+        <!-- Ink -->
+        <script type="text/javascript" src="js/lib/ink/modernizr.js"></script>
+        <script type="text/javascript" src="js/lib/ink/holder.js"></script>
+        <script type="text/javascript" src="js/lib/ink/ink-all.js"></script>
+        <script type="text/javascript" src="js/lib/ink/autoload.js"></script>
+
+        <script type="text/javascript" src="js/lib/jquery-2.1.1.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.dataTables.js"></script>
+
+        <script type="text/javascript" src="js/docviewer.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="wrap">
+            <div class="ink-shade fade">
+                <div id="myModal" class="ink-modal fade" data-trigger="#connectionParamsBtn" data-close-on-click="true" data-width="40%" data-height="80%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
+                    <div class="modal-header">
+                        <button class="modal-close ink-dismiss"></button>
+                        <h3 id="modal-title">Connection parameters</h3>
+                    </div>
+                    <div class="modal-body column-group gutters" id="modalContent">
+                        <div class="all-50">
+                            <form id="connectionForm" class="ink-form">
+                                <fieldset>
+                                    <legend></legend>
+                                    <div class="control-group">
+                                        <label for="storageEsUrl">Elasticsearch</label>
+                                        <div class="control">
+                                            <input id="storageEsUrl" type="text" placeholder="url">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="riakUrl">Riak</label>
+                                        <div class="control">
+                                            <input id="riakUrl" type="text" placeholder="url">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <button id="setConnectionDetailsBtn" class="ink-button caution ink-dismiss">Connect</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="all-50">
+                            <h4>autofill</h4>
+                            <dl id="">
+                            </dl>
+                            <div id="environmentsAutofill"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="push-right">
+                            <button class="ink-button caution ink-dismiss">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="topbar">
+                <nav class="ink-navigation ink-grid">
+                    <ul class="menu horizontal black push-left">
+                        <li class="logo">es-foot</li>
+                        <li><a href="esfoot.html">overview</a></li>
+                        <li><a href="indices.html">indices</a></li>
+                        <li class="disabled"><a href="#">browser</a></li>
+                        <li class="disabled"><a href="#">search</a></li>
+                        <li class="active"><a href="#">docViewer <small>(experimental)</small></a></li>
+                    </ul>
+                    <ul class="menu horizontal black push-right">
+                        <li class="text">pending requests:</li>
+                        <li class="text" id="pendingRequests">0</li>
+                        <li class="text">Connected to</li>
+                        <li class="text"><span class="ink-label" id="clusterNameHead"></span></li>
+                        <li><a href="#" id="refreshBtn"><i id="refreshBtnIcon" class="fa fa-refresh fa-lg"></i></a></li>
+                        <li><a href="#" id="connectionParamsBtn"><i class="fa fa-database fa-lg"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+
+            <div id="overview" class="ink-grid vertical-space">
+                <form id="docViewForm" class="ink-form">
+                    <fieldset>
+                        <div class="control-group">
+                            <label for="docId">docId</label>
+                            <div class="control">
+                                <input id="docId" type="text" placeholder="id">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="column-group">
+                    <div class="all-50">
+                        <h4>doc from ES</h4>
+                        <pre class="prettyJson" id="docFromEs"></pre>
+                    </div>
+                    <div class="all-50">
+                        <h4>doc from Riak</h4>
+                        <pre class="prettyJson" id="docFromRiak"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="push"></div>
+        </div>
+
+        <footer class="clearfix">
+            <div class="ink-grid">
+                <p id="clusterinfo" class="note"></p>
+            </div>
+        </footer>
+
+    </body>
+
+</html>

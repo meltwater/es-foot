@@ -1,0 +1,32 @@
+table.index-table td.status_yellow {
+    background: #f8f98d;
+}
+
+table.index-table td.status_red {
+    background: #f98d8d;
+}
+
+#clustername {
+    font-size: 24px;
+}
+
+.dataTables_wrapper {
+    font-size: 13px;
+}
+
+.ink-form input[type="text"] {
+    width: 300px;
+    -webkit-appearance: none;
+    margin-bottom: 2px;
+    margin-left: 6px;
+    background: none;
+    background-repeat: no-repeat;
+    background-position: 150px 2px;
+    background-size: 16px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: #000000;
+    border-bottom-style: dashed;
+    padding: 0px 0px 0px 5px;
+}

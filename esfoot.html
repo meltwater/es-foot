@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>esfoot</title>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <!-- Ink CSS -->
+        <link rel="stylesheet" type="text/css" href="css/ink-flex.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.json-viewer.css">
+
+        <!-- App specific CSS -->
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/foot.css">
+
+        <!-- Ink -->
+        <script type="text/javascript" src="js/lib/ink/modernizr.js"></script>
+        <script type="text/javascript" src="js/lib/ink/holder.js"></script>
+        <script type="text/javascript" src="js/lib/ink/ink-all.js"></script>
+        <script type="text/javascript" src="js/lib/ink/autoload.js"></script>
+
+        <script type="text/javascript" src="js/lib/jquery-2.1.1.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.postjson.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.json-viewer.js"></script>
+
+        <script type="text/javascript" src="js/lib/ace/ace.js"></script>
+
+        <script type="text/javascript" src="js/overview.js"></script>
+        <script type="text/javascript" src="js/indices.js"></script>
+        <script type="text/javascript" src="js/browser.js"></script>
+        <script type="text/javascript" src="js/searcher.js"></script>
+        <script type="text/javascript" src="js/docviewer.js"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+
+    </head>
+
+    <body>
+        <div class="wrap">
+
+            <!-- CONNECTION PARAMS modal -->
+            <div class="ink-shade fade">
+                <div id="myModal" class="ink-modal fade" data-trigger="#connectionParamsBtn" data-close-on-click="true" data-width="40%" data-height="210px" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
+                    <div class="modal-header">
+                        <button class="modal-close ink-dismiss"></button>
+                        <h3 id="modal-title">Connection URL</h3>
+                    </div>
+                    <div class="modal-body" style="overflow-y:hidden" id="modalContent">
+                        <form id="connectionForm" class="ink-form">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="control">
+                                        <input id="storageEsUrl" type="text" placeholder="url">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <button id="setConnectionDetailsBtn" class="ink-button caution ink-dismiss">Connect</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOP BAR -->
+            <div id="topbar">
+                <nav class="ink-navigation ink-grid">
+                    <ul class="menu horizontal black push-left">
+                        <li class="logo">es-foot</li>
+                        <li id="navOverview" class="active"><a href="#" id="navBtnOverview">overview</a></li>
+                        <li id="navIndices"><a href="#" id="navBtnIndices">indices</a></li>
+                        <li id="navSearcher"><a href="#" id="navBtnSearcher">searcher</a></li>
+                        <li id="navBrowser"><a href="#" id="navBtnBrowser">browser</a></li>
+                        <li id="navDocViewer"><a href="#" id="navBtnDocViewer">doc viewer</a></li>
+                    </ul>
+                    <ul class="menu horizontal black push-right">
+                        <li><a href="#" id="refreshBtn"><i id="refreshBtnIcon" class="fa fa-refresh fa-lg"></i></a></li>
+                        <li><a href="#" id="connectionParamsBtn"><i class="fa fa-database fa-lg"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- OVERVIEW tab -->
+            <div id="overview" class="ink-grid vertical-space">
+                <h1>cluster <span id="clustername"></span></h1>
+                <h4>status <span id="statuslabel"></span></h4>
+                <p>version: <span id="version_es"></span><br>
+                   lucene version: <span id="version_lucene"></span><br>
+                   indices: <span id="index_count"></span><br>
+                   shards: <span id="total_shard_count"></span> <small>primary: <span id="primary_shard_count"></span></small><br>
+                   documents: <span id="total_doc_count"></span> <small>with nested: <span id="nested_total_doc_count"></span></small>
+                </p>
+                <p><h4>nodes</h4>
+                  <table class="ink-table nodes-table bordered alternating">
+                      <thead>
+                          <tr>
+                              <th>name</th>
+                              <th>master</th>
+                              <th>host</th>
+                              <th>ip</th>
+                              <th>transport address</th>
+                              <th>version</th>
+                          </tr>
+                      </thead>
+                      <tbody id="nodes-table-body">
+                      </tbody>
+                  </table>
+                </p>
+                <p><h5>templates</h5>
+                  <table class="ink-table templates-table small-table bordered alternating">
+                      <thead>
+                          <tr>
+                              <th>name</th>
+                              <th>for</th>
+                              <th>version</th>
+                          </tr>
+                      </thead>
+                      <tbody id="templates-table-body">
+                      </tbody>
+                  </table>
+                </p>
+                <p><h5>plugins</h5>
+                  <table id="plugin-table" class="ink-table small-table bordered alternating">
+                      <tbody id="plugins-table-body">
+                      </tbody>
+                  </table>
+                </p>
+            </div>
+
+            <!-- INDICES tab -->
+            <div id="indices" class="ink-grid vertical-space">
+                <h1>indices</h1>
+                <table id="index-table" class="ink-table small-table bordered hover">
+                    <tbody id="index-table-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SEARCHER tab -->
+            <div id="searcher" class="ink-grid vertical-space">
+                <h1>search</h1>
+
+                search query:
+                <div class="column-group">
+                    <div class="all-60">
+                        <form id="searchForm" class="ink-form">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div id="searchQuery" style="height:350px;margin-right:20px"></div>
+                                </div>
+                                <div class="control-group">
+                                    <button id="searchButton" class="ink-button">Search</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="all-40">
+                        <form id="searchForm" class="ink-form">
+                            <fieldset>
+                                <div class="control-group">
+                                    <label for="searchIndex">index: </label>
+                                    <input id="searchIndex" type="text" placeholder="index name" class="dashed"></br>
+                                    <label for="searchMaxHits">max hits: </label>
+                                    <input id="searchMaxHits" type="text" placeholder="2000" class="dashed">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+                <!--<div class="column-group">
+                    <h4>Previous searches</h4>
+                    <p><pre class="prettyJson" id="docFromEs"></pre></p>
+                </div>-->
+            </div>
+
+            <!-- BROWSER tab -->
+            <div id="browser" class="ink-grid vertical-space">
+                <h1>browser</h1>
+                <form id="docViewForm" class="ink-form">
+                    <fieldset>
+                    </fieldset>
+                </form>
+
+                <table id="browser-table" class="ink-table small-table bordered hover">
+                    <tbody id="browser-table-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DOCVIEWER tab -->
+            <div id="docViewer" class="ink-grid vertical-space">
+                <h1>doc viewer</h1>
+                <form id="docViewForm" class="ink-form">
+                    <fieldset>
+                        <div class="control-group">
+                            <label for="docId">doc id:</label>
+                            <input id="docId" type="text" placeholder="id" class="dashed">
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="column-group">
+                    <!--<p><pre class="prettyJson" id="docFromEs"></pre></p>-->
+                    <div id="docjson" class="prettyJson"></div>
+                </div>
+            </div>
+
+
+            <div class="push"></div>
+        </div>
+
+        <footer class="clearfix">
+            <div class="ink-grid">
+              <span class="text push-left" id="pendingRequestsText">Pending requests: <span id="pendingRequests">0</span></span>
+              <span class="text push-right">Connected to: <span class="ink-label" id="clusterNameHead"></span></span>
+            </div>
+        </footer>
+
+    </body>
+
+</html>

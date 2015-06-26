@@ -1,0 +1,93 @@
+html, body {
+    height: 100%;
+    background: #f0f0f0;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0px auto -30px;
+    padding-top: 24px;
+    overflow: auto;
+}
+
+#topbar {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  background: #1a1a1a;
+  -webkit-transform: scale3d(1, 1, 1);
+  *zoom: 1;
+  top: 0;
+}
+
+#topbar:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#topbar .ink-navigation {
+  *zoom: 1;
+}
+
+#topbar .ink-navigation ul.black li.logo {
+  font-size: 16px;
+  padding: .7em 1em;
+  color: #bbbbbb;
+  text-transform: uppercase;
+  line-height: 24px;
+  *height: auto;
+}
+
+#topbar .ink-navigation ul.black li.text {
+  font-size: 14px;
+  padding: .7em 1em;
+  color: #bbbbbb;
+  text-transform: uppercase;
+  font-weight: 300;
+  line-height: 24px;
+  *height: auto;
+}
+
+#topbar .ink-navigation ul.black li img {
+  padding: .2em 0em;
+}
+
+#topbar .ink-navigation ul.black li input {
+  margin-top: 9px;
+  font-size: 14px;
+  width: 240px;
+}
+
+#topbar .ink-navigation:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.push, footer {
+    height: 30px;
+    margin-top: 0;
+}
+
+footer {
+    background: #ccc;
+    border: 0;
+}
+footer * {
+    line-height: inherit;
+}
+
+table.small-table {
+    font-size: 13px;
+}
+
+table.small-table td {
+    font-size: 11px;
+}
+
+.prettyJson {
+    font-size: 11px;
+}
