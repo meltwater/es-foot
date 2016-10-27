@@ -8,15 +8,16 @@ es-foot is an [Elasticsearch](https://www.elastic.co/products/elasticsearch) GUI
 
 for both small, large and huge clusters.
 
+![es-foot overview](es-foot-screen-overview.jpg)
 
 ## Usage
 
 To use, simply:
 
  1. clone the repository
- 1. point your browser to esfoot.html
- 2. click the database icon in the top right
- 3. specify the url to your ES cluster and connect
+ 1. point your browser to `esfoot.html`
+ 1. click the database icon in the top right
+ 1. specify the URL to your ES cluster and connect
 
 
 ## Views
